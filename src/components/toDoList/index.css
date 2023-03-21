@@ -1,0 +1,61 @@
+.ToDoList {
+  width: 300px;
+  border-radius: 12px;
+  margin: 10vh auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ToDoList .todo-title {
+  font-size: 2.5em;
+  color: rgb(56, 154, 215);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.title-icon {
+  font-size: 34px;
+}
+
+.todo-form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.todo-form .todo-input {
+  font-size: 18px;
+  color: rgb(255, 255, 255);
+  background-color: transparent;
+  width: 200px;
+  height: 40px;
+  border: 0;
+  border-bottom: 1px solid rgb(54, 54, 54);
+  padding: 4px 5px;
+  outline: none;
+}
+
+.todo-form .todo-button {
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 700;
+  border: 0;
+  background-color: rgb(56, 154, 215);
+  color: white;
+}
+
+@media screen and (min-width: 768px) {
+  .ToDoList {
+    width: 700px;
+  }
+
+  .ToDoList .todo-input {
+    width: 400px;
+  }
+}
