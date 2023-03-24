@@ -1,11 +1,22 @@
 import "./index.css";
 import { RiTodoLine } from "react-icons/ri";
 import ToDoContainer from "../../components/todoContainer";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const ToDoList = () => {
   const [inputValue, setInputValue] = useState("");
   const [todo, setTodo] = useState([]);
+
+  useEffect(() => {
+    const savedTodo = localStorage.getItem("todo");
+    if (savedTodo) {
+      setTodo(JSON.parse(savedTodo));
+    }
+  }, []);
+
+  const saveToLocalStorage = (todo) => {
+    localStorage.setItem("todo", JSON.stringify(todo));
+  };
 
   const onHandleSubmit = (e) => {
     e.preventDefault();
@@ -13,7 +24,9 @@ const ToDoList = () => {
       if (
         !prev.find((item) => item.toLowerCase() === inputValue.toLowerCase())
       ) {
-        return [...todo, inputValue];
+        const updatedTodo = [...todo, inputValue];
+        saveToLocalStorage(updatedTodo);
+        return updatedTodo;
       } else {
         alert("Hai già aggiunto questo valore alla lista!");
         return prev;

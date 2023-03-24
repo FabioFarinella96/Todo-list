@@ -7,6 +7,17 @@ const ToDoContainer = ({ todo }) => {
   const [checked, setChecked] = useState(false);
   const [remove, setRemove] = useState(false);
 
+  const removeToDoFromLocalStorage = () => {
+    const savedTodo = JSON.parse(localStorage.getItem("todo"));
+    const updatedTodo = savedTodo.filter((item) => item !== todo);
+    localStorage.setItem("todo", JSON.stringify(updatedTodo));
+  };
+
+  const handleRemoveToDo = () => {
+    setRemove((prev) => !prev);
+    removeToDoFromLocalStorage();
+  };
+
   return (
     <div className={`ToDoContainer ${remove && "hidden-container"}`}>
       <p className="todo-text">{todo}</p>
@@ -25,10 +36,7 @@ const ToDoContainer = ({ todo }) => {
           )}
         </button>
       </div>
-      <button
-        className="remove-button"
-        onClick={() => setRemove((prev) => !prev)}
-      >
+      <button className="remove-button" onClick={handleRemoveToDo}>
         <RiDeleteBin5Fill />
       </button>
     </div>
